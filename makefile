@@ -3,7 +3,7 @@ build:
 	ant build
 
 .PHONY: run
-run:
+run: build
 	java -jar build/MasterMindProject.jar
 
 .PHONY: clean
