@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mastermindproject;
 
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- *
- * @author Bhargav
- */
+import java.io.Console;
+
 public class MasterMindProject {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Random rand = new Random();
         Scanner input = new Scanner(System.in);
@@ -24,13 +14,19 @@ public class MasterMindProject {
         int[] genNum = new int[4];
         int[] guessNum = new int[4];
         i  = rand.nextInt(9000)+999;
+        
         while(verify(i))
         {
             i = rand.nextInt(9000)+999;
         }
+
+        // TODO: use the following to bring in user specified code as a secret code
+        // String code = fetch_code();
+        
         genNum = intoArray(i,genNum);
-        //System.out.println(i);
+
         System.out.print("Enter a 4 digit number as a guess\n");
+
         while(rPlaces != 4)
         {
             wPlaces = 0;
@@ -119,5 +115,19 @@ public class MasterMindProject {
             return false;
         else
             return true;
+    }
+
+    private static String fetch_code() {
+        Console console = System.console();
+
+        if (console == null) {
+            System.err.println("Console not available.");
+            return "";
+        }
+
+        char[] password = console.readPassword("Enter user defined code: ");
+        String passwordString = new String(password);
+
+        return passwordString;
     }
 }
